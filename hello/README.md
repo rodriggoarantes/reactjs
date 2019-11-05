@@ -1,2 +1,3 @@
-# gobarber-react
-Aplicação frontend para controle de agendamentos de uma barbearia - GoBarber
+# hello-world-react
+
+Rascunho inicial com React, um exemplo de HelloWorld com configuraçoes de editor e outras dependencias.
