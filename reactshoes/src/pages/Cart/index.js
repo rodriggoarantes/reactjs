@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Container from '../../components/Container';
 
-export default class Main extends Component {
+export default class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -10,7 +10,7 @@ export default class Main extends Component {
   render() {
     return (
       <Container>
-        <h1>Hello World</h1>
+        <h1>Cart</h1>
       </Container>
     );
   }
