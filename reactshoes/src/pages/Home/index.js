@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import Container from '../../components/Container';
+
+import { MdAddShoppingCart } from 'react-icons/md';
+
+import { ProductList } from './styles';
 
 export default class Home extends Component {
   constructor(props) {
@@ -9,9 +12,20 @@ export default class Home extends Component {
 
   render() {
     return (
-      <Container>
-        <h1>Home</h1>
-      </Container>
+      <ProductList>
+        <li>
+          <img src="http://lorempixel.com/400/400/sports/1/" alt="tenis" />
+          <strong>Tenis muito Legal</strong>
+          <span>R$ 129,90</span>
+
+          <button type="button">
+            <div>
+              <MdAddShoppingCart size={16} color="white" />
+            </div>
+            <span>Adicionar ao Carrinho</span>
+          </button>
+        </li>
+      </ProductList>
     );
   }
 }

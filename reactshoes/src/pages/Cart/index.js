@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Container from '../../components/Container';
 
 export default class Cart extends Component {
   constructor(props) {
@@ -9,9 +8,9 @@ export default class Cart extends Component {
 
   render() {
     return (
-      <Container>
+      <>
         <h1>Cart</h1>
-      </Container>
+      </>
     );
   }
 }
