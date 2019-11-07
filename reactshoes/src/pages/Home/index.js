@@ -14,7 +14,10 @@ export default class Home extends Component {
     return (
       <ProductList>
         <li>
-          <img src="http://lorempixel.com/400/400/sports/1/" alt="tenis" />
+          <img
+            src="https://cdn.awsli.com.br/600x450/477/477972/produto/16759491/7a7fabf90d.jpg"
+            alt="tenis"
+          />
           <strong>Tenis muito Legal</strong>
           <span>R$ 129,90</span>
 
@@ -23,6 +26,36 @@ export default class Home extends Component {
               <MdAddShoppingCart size={16} color="white" />
             </div>
             <span>Adicionar ao Carrinho</span>
+          </button>
+        </li>
+        <li>
+          <img
+            src="https://cdn.awsli.com.br/600x450/477/477972/produto/16759491/7a7fabf90d.jpg"
+            alt="tenis"
+          />
+          <strong>Tenis muito Legal</strong>
+          <span>R$ 129,90</span>
+
+          <button type="button">
+            <div>
+              <MdAddShoppingCart size={16} color="white" />
+            </div>
+            <span>Adicionar ao Carrinho</span>
+          </button>
+        </li>
+        <li>
+          <img
+            src="https://cdn.awsli.com.br/600x450/477/477972/produto/16759491/7a7fabf90d.jpg"
+            alt="tenis"
+          />
+          <strong>Tenis muito Legal</strong>
+          <span>R$ 129,90</span>
+
+          <button type="button">
+            <div>
+              <MdAddShoppingCart size={16} color="white" />
+            </div>
+            <span>ADICIONAR AO CARRINHO</span>
           </button>
         </li>
       </ProductList>

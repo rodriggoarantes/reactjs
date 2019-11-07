@@ -29,7 +29,7 @@ export default createGlobalStyle`
   }
 
   body, input, button {
-    color: white;
+    color: #333;
     font-size: 14px;
     font-family: Roboto, "Roboto",  sans-serif, Arial, Helvetica;
   }
