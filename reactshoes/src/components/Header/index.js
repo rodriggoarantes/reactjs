@@ -11,6 +11,7 @@ import logo from '../../assets/images/logo.svg';
 class Header extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   render() {
@@ -32,6 +33,8 @@ class Header extends Component {
   }
 }
 
-export default connect(state => ({
+const mapStateToProps = state => ({
   cartSize: state.cart && state.cart.length,
-}))(Header);
+});
+
+export default connect(mapStateToProps)(Header);
