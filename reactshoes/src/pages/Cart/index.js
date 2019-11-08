@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import { formatPrice } from '../../util/format';
+import * as CartActions from '../../store/modules/cart/actions';
 
 import {
   MdRemoveCircleOutline,
@@ -14,6 +17,21 @@ class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  handleCartRemove = productId => {
+    const { removeFromCart } = this.props;
+    removeFromCart(productId);
+  };
+
+  increment(product) {
+    const { updateAmount } = this.props;
+    updateAmount(product.id, product.amount + 1);
+  }
+
+  decrement(product) {
+    const { updateAmount } = this.props;
+    updateAmount(product.id, product.amount - 1);
   }
 
   render() {
@@ -31,7 +49,7 @@ class Cart extends Component {
           </thead>
           <tbody>
             {this.props.cart.map(product => (
-              <tr>
+              <tr key={product.id}>
                 <td>
                   <img src={product.image} alt={product.title} />
                 </td>
@@ -41,21 +59,27 @@ class Cart extends Component {
                 </td>
                 <td>
                   <div>
-                    <button type="button">
+                    <button
+                      type="button"
+                      onClick={() => this.decrement(product)}
+                    >
                       <MdRemoveCircleOutline size={20} color="#7159c1" />
                     </button>
 
                     <input type="number" readOnly value={product.amount} />
-                    <button type="button">
+                    <button
+                      type="button"
+                      onClick={() => this.increment(product)}
+                    >
                       <MdAddCircleOutline size={20} color="#7159c1" />
                     </button>
                   </div>
                 </td>
                 <td>
-                  <strong>R$ 258,80</strong>
+                  <strong>{product.subtotal}</strong>
                 </td>
                 <td>
-                  <button>
+                  <button onClick={() => this.handleCartRemove(product.id)}>
                     <MdDelete size={20} color="#7159c1" />
                   </button>
                 </td>
@@ -67,7 +91,7 @@ class Cart extends Component {
           <button>Finalizar Pedido</button>
           <Total>
             <span>TOTAL</span>
-            <strong>R$ 999.999,999</strong>
+            <strong>{this.props.total}</strong>
           </Total>
         </Footer>
       </Container>
@@ -76,7 +100,21 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
-  cart: state.cart,
+  cart: state.cart.map(product => ({
+    ...product,
+    subtotal: formatPrice(product.price * product.amount),
+  })),
+  total: formatPrice(
+    state.cart.reduce((total, product) => {
+      return total + product.price * product.amount;
+    }, 0)
+  ),
 });
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cart);
