@@ -2,7 +2,8 @@ export const types = {
   ADD: '@cart/ADD_REQUEST',
   ADD_SUCCESS: '@cart/ADD_SUCCESS',
   REMOVE: '@cart/REMOVE',
-  AMOUNT: '@cart/AMOUNT',
+  AMOUNT: '@cart/AMOUNT_REQUEST',
+  AMOUNT_SUCCESS: '@cart/AMOUNT_SUCCESS',
 };
 
 export function addToCart(id) {
@@ -29,6 +30,14 @@ export function removeFromCart(productId) {
 export function updateAmount(id, amount) {
   return {
     type: types.AMOUNT,
+    id,
+    amount,
+  };
+}
+
+export function updateAmountSuccess(id, amount) {
+  return {
+    type: types.AMOUNT_SUCCESS,
     id,
     amount,
   };

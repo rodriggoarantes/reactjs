@@ -2,7 +2,7 @@ import { call, select, put, all, takeLatest } from 'redux-saga/effects';
 
 import { toast } from 'react-toastify';
 
-import { types, addToCartSuccess, updateAmount } from './actions';
+import { types, addToCartSuccess, updateAmountSuccess } from './actions';
 import api from '../../../services/api';
 
 import { formatPrice } from '../../../util/format';
@@ -15,8 +15,8 @@ function* addtoCart({ id }) {
   const stock = yield call(api.get, `/stock/${id}`);
   const stockAmount = stock.data.amount;
   const currentAmount = productExists ? productExists.amount : 0;
-
   const amount = currentAmount + 1;
+
   if (amount > stockAmount) {
     toast.error('Quantidade solicitada fora do estoque');
     return;
@@ -24,7 +24,7 @@ function* addtoCart({ id }) {
 
   if (productExists) {
     const ammount = productExists.amount + 1;
-    yield put(updateAmount(id, ammount));
+    yield put(updateAmountSuccess(id, ammount));
   } else {
     const response = yield call(api.get, `/products/${id}`);
 
@@ -38,4 +38,21 @@ function* addtoCart({ id }) {
   }
 }
 
-export default all([takeLatest(types.ADD, addtoCart)]);
+function* updateAmount({ id, amount }) {
+  if (amount <= 0) return;
+
+  const stock = yield call(api.get, `/stock/${id}`);
+  const stockAmount = stock.data.amount;
+
+  if (amount > stockAmount) {
+    toast.error('Quantidade solicitada fora do estoque');
+    return;
+  }
+
+  yield put(updateAmountSuccess(id, amount));
+}
+
+export default all([
+  takeLatest(types.ADD, addtoCart),
+  takeLatest(types.AMOUNT, updateAmount),
+]);
