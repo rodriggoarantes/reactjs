@@ -1,12 +1,20 @@
 export const types = {
-  ADD: '@cart/ADD',
+  ADD: '@cart/ADD_REQUEST',
+  ADD_SUCCESS: '@cart/ADD_SUCCESS',
   REMOVE: '@cart/REMOVE',
   AMOUNT: '@cart/AMOUNT',
 };
 
-export function addToCart(product) {
+export function addToCart(id) {
   return {
     type: types.ADD,
+    id: id,
+  };
+}
+
+export function addToCartSuccess(product) {
+  return {
+    type: types.ADD_SUCCESS,
     product,
   };
 }
