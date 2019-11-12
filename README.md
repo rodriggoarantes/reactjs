@@ -7,6 +7,10 @@ Repositorio com varias aplicações em ReactJS.
 - Hello World em ReactJS com configuraçoes iniciais.
 - Serve de base inicial para outros projetos ReactJS
 
+# hello-hooks
+
+- Hello World em ReactJS para entendimento do React Hooks
+
 # repos-git
 
 - Armazenamento de repositorios favoritos do GitHub.
