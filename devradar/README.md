@@ -1,3 +1,3 @@
-# find-dev / findev
+# DevRadar
 
 OminiStack 10 FINDEV - encontre devs proximos a voce.
