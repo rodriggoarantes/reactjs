@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Container, Titulo, Form, Label, Input, Submit } from './styles';
 
 export default function FormDev() {
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        if (position && position.coords) {
+          if (position && position.coords) {
+            const { latitude: lati, longitude: longi } = position.coords;
+            setLatitude(lati);
+            setLongitude(longi);
+          }
+        }
+      },
+      () => {
+        setLatitude(0);
+        setLongitude(0);
+      },
+      { timeout: 30000 }
+    );
+  }, []);
+
   return (
     <Container>
       <Titulo>Cadastrar</Titulo>
@@ -20,11 +42,11 @@ export default function FormDev() {
         <div className="input-group">
           <div className="input-block">
             <Label htmlFor="latitude">Latitude</Label>
-            <Input id="latitude" required />
+            <Input id="latitude" type="number" required value={latitude} />
           </div>
           <div className="input-block">
             <Label htmlFor="longitude">Longitude</Label>
-            <Input id="longitude" required />
+            <Input id="longitude" type="number" required value={longitude} />
           </div>
         </div>
 
