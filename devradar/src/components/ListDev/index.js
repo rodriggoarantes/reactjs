@@ -9,6 +9,15 @@ export default function ListDev() {
       <Item>
         <CardDev />
       </Item>
+      <Item>
+        <CardDev />
+      </Item>
+      <Item>
+        <CardDev />
+      </Item>
+      <Item>
+        <CardDev />
+      </Item>
     </List>
   );
 }
