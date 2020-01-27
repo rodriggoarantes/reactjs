@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://<SERVER:PORT>',
+  baseURL: 'https://devradar-nodejs.herokuapp.com',
 });
 
 export default api;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Card,
@@ -11,28 +12,40 @@ import {
   LinkSite,
 } from './styles';
 
-function CardDev() {
+function CardDev({ dev }) {
   return (
     <Card>
       <Header>
         <Avatar
-          src="https://api.adorable.io/avatars/50/avatar.png"
-          alt="Rodrigo"
+          src={
+            dev.avatarUrl || `https://api.adorable.io/avatar/50/${dev.name}.png`
+          }
+          alt={dev.name}
         />
         <Info>
-          <Name>Rodrigo Arantes</Name>
-          <Techs>Java, Node, Javascript, React, Android</Techs>
+          <Name>{dev.name}</Name>
+          <Techs>{dev.techs && dev.techs.join(', ')}</Techs>
         </Info>
       </Header>
-      <Bio>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
-      </Bio>
-      <LinkSite href="https://github.com/rodriggoarantes" target="_blank">
+      <Bio>{dev.bio}</Bio>
+      <LinkSite
+        href={`https://github.com/${dev.githubUsername}`}
+        target="_blank"
+      >
         Acesse perfil no Github
       </LinkSite>
     </Card>
   );
 }
+
+CardDev.propTypes = {
+  dev: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string,
+    bio: PropTypes.string,
+    githubUsername: PropTypes.string.isRequired,
+    techs: PropTypes.array,
+  }).isRequired,
+};
 
 export default CardDev;

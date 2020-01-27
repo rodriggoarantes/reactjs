@@ -1,7 +1,7 @@
 import React from 'react';
 
-import FormDev from '../../components/FormDev';
-import ListDev from '../../components/ListDev';
+import FormDev from '~/components/FormDev';
+import ListDev from '~/components/ListDev';
 
 import { Container, FormContainer, ListContainer } from './styles';
 

@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { FaSpinner, FaPlus } from 'react-icons/fa';
+
+import api from '~/services/api';
 
 import { Container, Titulo, Form, Label, Input, Submit } from './styles';
 
 export default function FormDev() {
+  const [loading, setLoading] = useState(false);
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [username, setUsername] = useState('');
@@ -10,6 +15,21 @@ export default function FormDev() {
 
   const handleAddDev = async event => {
     event.preventDefault();
+    setLoading(true);
+
+    const response = await api.post('/devs', {
+      githubUsername: username,
+      techs,
+      latitude,
+      longitude,
+    });
+
+    setUsername('');
+    setTechs('');
+
+    const { name, githubUsername } = response.data;
+    toast.success(`Usuário ${name} (${githubUsername}) salvo com sucesso!`);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -78,7 +98,19 @@ export default function FormDev() {
           </div>
         </div>
 
-        <Submit>Cadastrar</Submit>
+        <Submit loading={loading ? 1 : 0}>
+          {loading ? (
+            <span>
+              <FaSpinner color="white" size={14} />
+              Salvando ...
+            </span>
+          ) : (
+            <span>
+              <FaPlus color="white" size={14} />
+              Cadastrar
+            </span>
+          )}
+        </Submit>
       </Form>
     </Container>
   );
