@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { toast } from 'react-toastify';
 import { FaSpinner, FaPlus } from 'react-icons/fa';
-
+import { DevContext } from '~/services/DevContext';
 import api from '~/services/api';
 
 import { Container, Titulo, Form, Label, Input, Submit } from './styles';
 
 export default function FormDev() {
+  const dispatch = useContext(DevContext);
+
   const [loading, setLoading] = useState(false);
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
@@ -29,6 +31,8 @@ export default function FormDev() {
 
     const { name, githubUsername } = response.data;
     toast.success(`Usuário ${name} (${githubUsername}) salvo com sucesso!`);
+
+    dispatch({ type: 'update', payload: response.data });
     setLoading(false);
   };
 

@@ -1,29 +1,23 @@
-import React, { useState, useEffect } from 'react';
-
-import api from '~/services/api';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { List, Item } from './styles';
 import CardDev from '../CardDev';
 
-export default function ListDev() {
-  const [listDevs, setListDevs] = useState([]);
-
-  useEffect(() => {
-    const fetchListDevs = async () => {
-      const response = await api.get('/devs');
-      setListDevs(response.data);
-    };
-
-    fetchListDevs();
-  }, []);
-
+function ListDev({ list }) {
   return (
     <List>
-      {listDevs.map(item => (
-        <Item key={item.githubUsername}>
-          <CardDev dev={item} />
+      {list.map(dev => (
+        <Item key={dev.githubUsername}>
+          <CardDev dev={dev} />
         </Item>
       ))}
     </List>
   );
 }
+
+ListDev.propTypes = {
+  list: PropTypes.arrayOf(CardDev.propTypes.dev).isRequired,
+};
+
+export default ListDev;
