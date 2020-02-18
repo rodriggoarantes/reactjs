@@ -1,18 +1,4 @@
 import styled from 'styled-components';
-import logo from '~/assets/logo.svg';
-
-export const Logo = styled.img.attrs({
-  src: logo,
-  alt: 'AirCnC',
-})``;
-
-export const Content = styled.div`
-  width: 100%;
-  background-color: white;
-  margin-top: 50px;
-  border-radius: 4px;
-  padding: 30px;
-`;
 
 export const Title = styled.p`
   font-size: 22px;
