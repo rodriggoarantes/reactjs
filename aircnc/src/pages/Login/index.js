@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 
 import { useAuthentication } from '~/components/AuthProvider';
+import { Form, Label, Input, Button } from '~/components/Form';
 
-import { Title, Form, Label, Input, SubmitButton } from './styles';
+import { Title } from './styles';
 
 import api from '~/services/api';
 
@@ -54,7 +55,7 @@ const Login = ({ history }) => {
           onChange={e => setEmail(e.target.value)}
         />
 
-        <SubmitButton>Entrar</SubmitButton>
+        <Button type="submit">Entrar</Button>
       </Form>
     </>
   );

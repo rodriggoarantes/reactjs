@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 import { useAuthentication } from '~/components/AuthProvider';
+import { Button } from '~/components/Form';
 
 import api from '~/services/api';
 
 import { Lista, Item, Thumb, Name, Price } from './styles';
 
-const Dashboard = ({ history }) => {
+const Dashboard = () => {
   const [spots, setSpots] = useState([]);
   const auth = useAuthentication();
 
@@ -52,12 +54,12 @@ const Dashboard = ({ history }) => {
           </Item>
         ))}
       </Lista>
+
+      <Link to="/new">
+        <Button type="button">Cadastrar novo spot</Button>
+      </Link>
     </>
   );
-};
-
-Dashboard.propTypes = {
-  history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
 };
 
 export default Dashboard;
