@@ -4,6 +4,7 @@ import React, {
   createContext,
   useCallback,
   useMemo,
+  useEffect,
 } from 'react';
 
 const noop = () => {};
@@ -16,6 +17,13 @@ const AuthContext = createContext({
 
 const AuthenticationProvider = props => {
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const userStoraged = localStorage.getItem('user');
+    if (userStoraged) {
+      setUser(JSON.parse(userStoraged));
+    }
+  }, []);
 
   const login = useCallback(userParam => {
     localStorage.setItem('user', JSON.stringify(userParam));
