@@ -10,6 +10,12 @@ export const Label = styled.label`
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 8px;
+
+  & > span {
+    font-weight: normal;
+    color: #aaa;
+    font-size: 12px;
+  }
 `;
 
 export const Input = styled.input`

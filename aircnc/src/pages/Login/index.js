@@ -13,6 +13,7 @@ const Login = ({ history }) => {
   const auth = useAuthentication();
 
   const [email, setEmail] = useState('');
+
   const handleSubmit = async event => {
     event.preventDefault();
 
