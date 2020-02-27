@@ -39,18 +39,25 @@ function New({ history }) {
     data.append('techs', techs);
     data.append('price', price);
 
-    const response = await api.post('/spots', data, {
-      headers: { user_id: auth.user.id },
-    });
+    try {
+      await api.post('/spots', data, {
+        headers: { user_id: auth.user.id },
+      });
 
-    if (response && response.data) {
       toast.success(`Local ${name} cadastrado com sucesso!`);
       history.push('/dashboard');
-    } else {
-      toast.error(`Falha ao registrar o local ${name}!`);
+    } catch (error) {
+      if (error.response) {
+        const mensagem = error.response.data.error;
+        toast.error(`Falha ao registrar o local : ${mensagem}!`);
+      } else if (error.request) {
+        toast.error(`Falha ao registrar o local : ${error.request}!`);
+      } else {
+        toast.error(`Falha ao registrar o local ${name}!`);
+      }
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
@@ -107,7 +114,7 @@ function New({ history }) {
           onChange={e => setPrice(e.target.value)}
         />
 
-        <SubmitButton loading={loading}>
+        <SubmitButton loading={loading ? 1 : 0}>
           {loading ? (
             <>
               <FaSpinner color="white" size={14} />
