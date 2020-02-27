@@ -6,7 +6,7 @@ import { Button } from '~/components/Form';
 
 import api from '~/services/api';
 
-import { Lista, Item, Thumb, Name, Price } from './styles';
+import { Lista, Item, Thumb, Name, Price, Line } from './styles';
 
 const Dashboard = () => {
   const [spots, setSpots] = useState([]);
@@ -38,9 +38,9 @@ const Dashboard = () => {
         <span>Acesso nao Permitido</span>
       )}
 
-      <hr style={{ margin: '10px 0' }} />
+      <Line />
       <span>Não há reservas pendentes</span>
-      <hr style={{ margin: '10px 0' }} />
+      <Line />
 
       <Lista>
         {spots.map(spot => (
@@ -50,13 +50,17 @@ const Dashboard = () => {
               <strong>{spot.company}</strong>
               <span>{spot.name}</span>
             </Name>
-            <Price>{spot.price ? `R$ ${spot.price}/dia` : 'FREE'}</Price>
+            <Price>
+              {spot.price && parseInt(spot.price, 10) > 0
+                ? `R$ ${spot.price}/dia`
+                : 'FREE'}
+            </Price>
           </Item>
         ))}
       </Lista>
 
       <Link to="/new">
-        <Button type="button">Cadastrar novo spot</Button>
+        <Button type="button">Cadastrar Spot</Button>
       </Link>
     </>
   );

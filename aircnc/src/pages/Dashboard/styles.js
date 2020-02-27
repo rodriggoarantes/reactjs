@@ -45,3 +45,12 @@ export const Price = styled.span`
   color: #999;
   margin-top: 6px;
 `;
+
+export const Line = styled.hr`
+  width: 100%;
+  margin: 10px 0;
+  height: 1px;
+  color: #dedede;
+  background-color: #dedede;
+  border: none;
+`;
