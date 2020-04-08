@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { ToastContainer } from 'react-toastify';
-
 import GlobalStyle from './components/GlobalStyles';
 
 import Routes from './routes';
