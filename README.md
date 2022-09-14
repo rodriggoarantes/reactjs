@@ -2,11 +2,6 @@
 
 Repositorio com varias aplicações em ReactJS.
 
-## hello-hooks
-
-- Projet de testes com hooks
-- Hello World em ReactJS para entendimento do React Hooks
-
 
 ## repos-git
 
