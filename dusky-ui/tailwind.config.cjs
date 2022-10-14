@@ -11,16 +11,23 @@ module.exports = {
       '2xl': 32
     },
     colors: {
-      'gray-900': '#121214',
-      'gray-800': '#202024',
-      'gray-400': '#7C7C8A',
-      'gray-200': '#c4c4cc',
-      'gray-100': '#e1e1c6',
-
-      'cyan-500': '#81d8f7',
-      'cyan-300': '#9be1fb',
-
-      'red-700': '#F61B4F',
+      'transparent': 'transparent',
+      'black': '#000',
+      'white': '#fff',
+      gray: {
+        900: '#121214',
+        800: '#202024',
+        400: '#7C7C8A',
+        200: '#c4c4cc',
+        100: '#e1e1c6'
+      },
+      cyan: {
+        500: '#81d8f7',
+        300: '#9be1fb',
+      },
+      red: {
+        700: '#F61B4F'
+      }
     },
     extend: {
       fontFamily: {
