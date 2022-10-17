@@ -1,3 +1,5 @@
 export { Heading } from './Heading/Heading'
 export { Text } from './Text/Text'
 export { Button } from './Button/Button'
+export { TextInput } from './TextInput/TextInput'
+export { Checkbox } from './Checkbox/Checkbox'

@@ -1,4 +1,5 @@
 import { InputHTMLAttributes, ReactNode } from 'react';
+import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 
 // ----------
@@ -27,9 +28,9 @@ export interface TextInputIconProps {
 
 function TextInputIcon(props: TextInputIconProps) {
     return (
-        <i className='w-6 h-6 text-gray-400'>
+        <Slot className='w-6 h-6 text-gray-400'>
             {props.children}
-        </i>
+        </Slot>
     );
 }
 
